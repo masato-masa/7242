@@ -536,13 +536,14 @@ const clearToken = ()  => localStorage.removeItem(TOKEN_KEY);
 
 async function ghRequest(path, { method = 'GET', body } = {}) {
   const token = getToken();
+  const headers = {
+    'Authorization': `Bearer ${token}`,
+    'Accept': 'application/vnd.github+json'
+  };
+  if (body) headers['Content-Type'] = 'application/json';
   const res = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/${path}`, {
     method,
-    headers: {
-      'Authorization': `Bearer ${token}`,
-      'Accept': 'application/vnd.github+json',
-      'Content-Type': 'application/json'
-    },
+    headers,
     body: body ? JSON.stringify(body) : undefined
   });
   if (!res.ok) {
