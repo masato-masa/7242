@@ -653,7 +653,8 @@ document.getElementById('upload-close-btn').addEventListener('click', () => clos
 uploadModal.addEventListener('click', e => { if (e.target === uploadModal) closeModal(uploadModal); });
 
 document.getElementById('upload-token-save-btn').addEventListener('click', async () => {
-  const token = uploadTokenInput.value.trim();
+  // コピペ時に混入しがちな改行・ゼロ幅文字・BOMなどを除去してから使う
+  const token = uploadTokenInput.value.trim().replace(/[\u200B\u200C\u200D\uFEFF\r\n\t]/g, '');
   if (!token) return;
   setToken(token);
   uploadTokenSection.querySelector('.token-hint').textContent = '確認中...';
