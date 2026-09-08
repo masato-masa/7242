@@ -27,7 +27,7 @@
   }
   @keyframes twinkle {
     0%, 100% { opacity: 0.1; }
-    50%       { opacity: 0.95; }
+    50%      { opacity: 0.95; }
   }
 
   /* 背景流れ星 */
@@ -76,7 +76,7 @@
 
   /* ===== ライトボックス（×ボタンなし） ===== */
   #lightbox {
-    display: none; position: fixed; inset: 0; z-index: 200;
+    display: none; position: fixed; inset: 0; z-index: 290;
     background: rgba(2,3,15,0.93);
     align-items: center; justify-content: center;
     flex-direction: column; gap: 14px; padding: 24px 16px;
@@ -95,6 +95,125 @@
     display: flex; align-items: center; justify-content: center;
     color: #5f5a8a; font-size: 0.9rem; pointer-events: none;
   }
+
+  /* ===== メニュー ===== */
+  #menu-btn {
+    position: fixed; top: 16px; right: 16px; z-index: 300;
+    width: 46px; height: 46px; border-radius: 50%;
+    background: rgba(20,20,45,0.65); backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: #d8d5f5; font-size: 1.2rem; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+  }
+  #menu-panel {
+    display: none; position: fixed; top: 68px; right: 16px; z-index: 300;
+    flex-direction: column; gap: 6px;
+    background: rgba(16,16,38,0.92); backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 12px; padding: 8px; min-width: 180px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+  }
+  #menu-panel.open { display: flex; }
+  #menu-panel button {
+    all: unset; cursor: pointer;
+    padding: 12px 14px; border-radius: 8px;
+    color: #e6e4ff; font-size: 0.92rem;
+    display: flex; align-items: center; gap: 8px;
+  }
+  #menu-panel button:active { background: rgba(255,255,255,0.08); }
+
+  /* ===== モーダル共通 ===== */
+  .modal {
+    display: none; position: fixed; inset: 0;
+    background: rgba(2,3,15,0.93);
+    align-items: center; justify-content: center;
+    padding: 20px 16px;
+  }
+  .modal.open { display: flex; }
+  .modal-card {
+    width: 100%; max-width: 480px; max-height: 88vh;
+    overflow-y: auto;
+    background: rgba(14,14,32,0.97);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 16px; padding: 20px;
+    color: #e6e4ff;
+  }
+  .modal-title {
+    font-size: 1rem; font-weight: 600; margin-bottom: 14px;
+    color: #f0eeff;
+  }
+  .modal-close-btn {
+    all: unset; cursor: pointer; display: block;
+    margin: 16px auto 0; padding: 10px 20px;
+    border-radius: 8px; text-align: center;
+    background: rgba(255,255,255,0.08);
+    color: #cfcbf0; font-size: 0.85rem;
+  }
+
+  /* ===== アップロード ===== */
+  #upload-modal { z-index: 280; }
+  .field-label {
+    font-size: 0.78rem; color: #a09ac8; margin-bottom: 6px; display: block;
+  }
+  .token-hint {
+    font-size: 0.75rem; color: #7d78a8; line-height: 1.5; margin-top: 8px;
+  }
+  .token-hint a { color: #9d97e0; }
+  #upload-token-input {
+    width: 100%; padding: 10px 12px; border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.18); background: rgba(255,255,255,0.05);
+    color: #f0eeff; font-size: 0.9rem;
+  }
+  #upload-token-save-btn, #upload-submit-btn {
+    all: unset; cursor: pointer; box-sizing: border-box;
+    display: block; width: 100%; text-align: center;
+    margin-top: 12px; padding: 12px; border-radius: 8px;
+    background: linear-gradient(135deg, #5a4fd6, #7d6ff0);
+    color: #fff; font-size: 0.9rem; font-weight: 600;
+  }
+  #upload-token-save-btn:active, #upload-submit-btn:active { opacity: 0.85; }
+  #upload-submit-btn:disabled { opacity: 0.5; pointer-events: none; }
+  #upload-file-input { color: #cfcbf0; font-size: 0.85rem; width: 100%; }
+  .upload-item {
+    display: flex; gap: 10px; align-items: center;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .upload-thumb {
+    width: 54px; height: 54px; border-radius: 8px; object-fit: cover;
+    border: 1px solid rgba(255,255,255,0.15); flex-shrink: 0;
+  }
+  .upload-fields { flex: 1; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+  .upload-date, .upload-title {
+    width: 100%; padding: 7px 9px; border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05);
+    color: #f0eeff; font-size: 0.82rem;
+  }
+  .upload-remove {
+    all: unset; cursor: pointer; color: #a09ac8; font-size: 1rem;
+    padding: 6px; flex-shrink: 0;
+  }
+  #upload-status { margin-top: 12px; font-size: 0.82rem; color: #a09ac8; text-align: center; min-height: 1.2em; }
+  #upload-clear-token-btn {
+    all: unset; cursor: pointer; font-size: 0.72rem; color: #7d78a8;
+    text-decoration: underline; margin-top: 14px; display: inline-block;
+  }
+
+  /* ===== 一覧 ===== */
+  #list-modal { z-index: 270; }
+  #list-modal .modal-card { max-width: 640px; }
+  #list-grid {
+    display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;
+  }
+  .list-item { cursor: pointer; }
+  .list-item img {
+    width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  .list-item-meta {
+    font-size: 0.65rem; color: #a09ac8; margin-top: 4px;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .list-empty { color: #7d78a8; font-size: 0.85rem; text-align: center; padding: 20px 0; }
 </style>
 </head>
 <body>
@@ -102,9 +221,52 @@
 <div id="sky"></div>
 <div id="stage"></div>
 
+<button id="menu-btn" aria-label="メニュー">☰</button>
+<div id="menu-panel">
+  <button id="menu-upload-btn">📷 アップロード</button>
+  <button id="menu-list-btn">🖼 思い出一覧</button>
+</div>
+
+<!-- アップロード -->
+<div id="upload-modal" class="modal">
+  <div class="modal-card">
+    <div class="modal-title">画像をアップロード</div>
+
+    <div id="upload-token-section" style="display:none;">
+      <label class="field-label" for="upload-token-input">GitHub トークン</label>
+      <input type="password" id="upload-token-input" placeholder="ghp_... または github_pat_...">
+      <button id="upload-token-save-btn">保存してアップロードへ</button>
+      <div class="token-hint">
+        このリポジトリへの書き込み権限を持つ Personal Access Token が必要です。
+        <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">こちらから発行</a>できます（Repository access をこのリポジトリのみに限定し、Contents を Read and write に設定）。
+        トークンはこの端末のブラウザにのみ保存され、他の人には共有されません。
+      </div>
+    </div>
+
+    <div id="upload-form-section" style="display:none;">
+      <input type="file" id="upload-file-input" accept="image/*" multiple>
+      <div id="upload-items"></div>
+      <button id="upload-submit-btn">アップロード</button>
+      <div id="upload-status"></div>
+      <button id="upload-clear-token-btn">トークンを削除する</button>
+    </div>
+
+    <button class="modal-close-btn" id="upload-close-btn">閉じる</button>
+  </div>
+</div>
+
+<!-- 思い出一覧 -->
+<div id="list-modal" class="modal">
+  <div class="modal-card">
+    <div class="modal-title">思い出一覧</div>
+    <div id="list-grid"></div>
+    <button class="modal-close-btn" id="list-close-btn">閉じる</button>
+  </div>
+</div>
+
 <!-- ライトボックス（×なし・背景タップで閉じる） -->
 <div id="lightbox" role="dialog" aria-modal="true">
-  <img id="lightbox-img" src="" alt="" />
+  <img id="lightbox-img" src="" alt="">
   <div id="lightbox-meta"></div>
 </div>
 
@@ -182,112 +344,125 @@ function openLb(src, alt, date, cap) {
 }
 function closeLb() { lb.classList.remove('open'); lbImg.src = ''; }
 lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    closeLb();
+    closeModal(uploadModal);
+    closeModal(listModal);
+    menuPanel.classList.remove('open');
+  }
+});
 
-/* ===== 写真カード生成 ===== */
+/* ===== 写真カードの生成・描画 ===== */
 const PAD = 280;   // 画面外の余白(px)
+let photosData = [];
+let cardSeq = 0;
+
+function clearDynamicStyles() {
+  document.querySelectorAll('style[data-kf]').forEach(el => el.remove());
+}
+
+function spawnCard(photo) {
+  const idx = cardSeq++;
+  const imgSz = RI(80, 180);         // サイズ不規則(px)
+  const spd   = R(10, 28);           // 速度不規則(秒)
+  const tLen  = RI(60, 160);         // 尾の長さ不規則
+  const delay = -R(0, spd * 1.4);    // 位相ランダム
+  const glow  = RI(10, 22);
+
+  /* ---- 移動方向をランダムに5パターン ---- */
+  let sx, sy, ex, ey;
+  const mv = RI(0, 5);
+
+  if (mv === 0) {
+    sx = R(-PAD, VW+PAD); sy = -PAD;
+    ex = sx + R(VW*0.1, VW*0.5); ey = VH+PAD;
+  } else if (mv === 1) {
+    sx = -PAD; sy = R(0, VH*0.7);
+    ex = VW+PAD; ey = sy + R(VH*0.1, VH*0.5);
+  } else if (mv === 2) {
+    sx = VW+PAD; sy = R(0, VH*0.5);
+    ex = -PAD;   ey = sy + R(VH*0.1, VH*0.5);
+  } else if (mv === 3) {
+    sx = R(-PAD, VW*0.2); sy = R(-PAD, VH*0.2);
+    ex = R(VW*0.8, VW+PAD); ey = R(VH*0.6, VH+PAD);
+  } else {
+    sx = R(VW*0.8, VW+PAD); sy = R(-PAD, VH*0.2);
+    ex = R(-PAD, VW*0.2);   ey = R(VH*0.6, VH+PAD);
+  }
+
+  /* ---- 移動角度から尾の角度を計算 ---- */
+  const moveAngle = Math.atan2(ey - sy, ex - sx) * 180 / PI;
+  const tailAngle = moveAngle + 180;
+
+  /* ---- 固有キーフレーム ---- */
+  const an = `c${idx}`;
+  const sEl = document.createElement('style');
+  sEl.setAttribute('data-kf', '1');
+  sEl.textContent =
+    `@keyframes ${an}{` +
+    `0%{transform:translate(${sx.toFixed(0)}px,${sy.toFixed(0)}px);opacity:0}` +
+    `8%{opacity:1}90%{opacity:1}` +
+    `100%{transform:translate(${ex.toFixed(0)}px,${ey.toFixed(0)}px);opacity:0}}`;
+  document.head.appendChild(sEl);
+
+  /* ---- DOM構築 ---- */
+  const card = document.createElement('div');
+  card.className = 'photo-card';
+  card.style.cssText =
+    `animation:${an} ${spd.toFixed(1)}s linear ${delay.toFixed(1)}s infinite;` +
+    `filter:drop-shadow(0 0 ${glow}px rgba(160,170,255,0.42));`;
+
+  const tail = document.createElement('div');
+  tail.className = 'tail';
+  tail.style.cssText =
+    `width:${tLen}px;` +
+    `top:${(imgSz/2-1).toFixed(0)}px;` +
+    `left:${(imgSz/2).toFixed(0)}px;` +
+    `transform-origin:0 50%;` +
+    `transform:rotate(${tailAngle.toFixed(1)}deg);`;
+
+  const img = document.createElement('img');
+  img.src = 'images/' + photo.file;
+  img.alt = photo.caption || '';
+  img.loading = 'lazy';
+  img.style.cssText = `width:${imgSz}px;height:${imgSz}px;`;
+
+  const meta = document.createElement('div');
+  meta.className = 'photo-meta';
+  meta.textContent = fmt(photo.date) + (photo.caption ? '　' + photo.caption : '');
+
+  card.appendChild(tail);
+  card.appendChild(img);
+  card.appendChild(meta);
+
+  card.addEventListener('click', () =>
+    openLb('images/'+photo.file, photo.caption||'', photo.date, photo.caption));
+
+  stage.appendChild(card);
+}
+
+function renderAllPhotos(photos) {
+  stage.innerHTML = '';
+  clearDynamicStyles();
+  document.getElementById('empty-msg')?.remove();
+
+  if (!photos || !photos.length) {
+    const m = document.createElement('div');
+    m.id = 'empty-msg'; m.textContent = 'まだ写真がありません';
+    document.body.appendChild(m);
+    return;
+  }
+
+  const sorted = [...photos].sort((a,b) => String(b.date).localeCompare(String(a.date)));
+  sorted.forEach(spawnCard);
+}
 
 fetch('photos.json')
   .then(r => r.json())
   .then(photos => {
-    if (!photos?.length) {
-      const m = document.createElement('div');
-      m.id = 'empty-msg'; m.textContent = 'まだ写真がありません';
-      document.body.appendChild(m); return;
-    }
-
-    /* 新しい日付順 */
-    photos.sort((a,b) => String(b.date).localeCompare(String(a.date)));
-
-    photos.forEach((photo, idx) => {
-      const imgSz = RI(80, 180);         // サイズ不規則(px)
-      const spd   = R(10, 28);           // 速度不規則(秒)
-      const tLen  = RI(60, 160);         // 尾の長さ不規則
-      const delay = -R(0, spd * 1.4);   // 位相ランダム
-      const glow  = RI(10, 22);
-
-      /* ---- 移動方向をランダムに5パターン ---- */
-      let sx, sy, ex, ey;
-      const mv = RI(0, 5);
-
-      if (mv === 0) {
-        // 上→下（右ドリフト）
-        sx = R(-PAD, VW+PAD); sy = -PAD;
-        ex = sx + R(VW*0.1, VW*0.5); ey = VH+PAD;
-      } else if (mv === 1) {
-        // 左→右（下ドリフト）
-        sx = -PAD; sy = R(0, VH*0.7);
-        ex = VW+PAD; ey = sy + R(VH*0.1, VH*0.5);
-      } else if (mv === 2) {
-        // 右→左（下ドリフト）
-        sx = VW+PAD; sy = R(0, VH*0.5);
-        ex = -PAD;   ey = sy + R(VH*0.1, VH*0.5);
-      } else if (mv === 3) {
-        // 左上→右下（斜め）
-        sx = R(-PAD, VW*0.2); sy = R(-PAD, VH*0.2);
-        ex = R(VW*0.8, VW+PAD); ey = R(VH*0.6, VH+PAD);
-      } else {
-        // 右上→左下（斜め）
-        sx = R(VW*0.8, VW+PAD); sy = R(-PAD, VH*0.2);
-        ex = R(-PAD, VW*0.2);   ey = R(VH*0.6, VH+PAD);
-      }
-
-      /* ---- 移動角度から尾の角度を計算 ---- */
-      // moveAngle: 進行方向(度)
-      // tailAngle: moveAngle + 180° = 進行方向の真逆 = 尾が伸びる方向
-      const moveAngle = Math.atan2(ey - sy, ex - sx) * 180 / PI;
-      const tailAngle = moveAngle + 180;
-
-      /* ---- 固有キーフレーム ---- */
-      const an = `c${idx}`;
-      const sEl = document.createElement('style');
-      sEl.textContent =
-        `@keyframes ${an}{` +
-        `0%{transform:translate(${sx|0}px,${sy|0}px);opacity:0}` +
-        `8%{opacity:1}90%{opacity:1}` +
-        `100%{transform:translate(${ex|0}px,${ey|0}px);opacity:0}}`;
-      document.head.appendChild(sEl);
-
-      /* ---- DOM構築 ---- */
-      const card = document.createElement('div');
-      card.className = 'photo-card';
-      card.style.cssText =
-        `animation:${an} ${spd.toFixed(1)}s linear ${delay.toFixed(1)}s infinite;` +
-        `filter:drop-shadow(0 0 ${glow}px rgba(160,170,255,0.42));`;
-
-      /* 尾：画像中心を起点に tailAngle 方向へ tLen px 伸びる */
-      const tail = document.createElement('div');
-      tail.className = 'tail';
-      tail.style.cssText =
-        `width:${tLen}px;` +
-        /* 画像中心に配置 */
-        `top:${(imgSz/2-1).toFixed(0)}px;` +
-        `left:${(imgSz/2).toFixed(0)}px;` +
-        /* 左端(=画像中心)を軸に回転 */
-        `transform-origin:0 50%;` +
-        `transform:rotate(${tailAngle.toFixed(1)}deg);`;
-
-      /* 画像 */
-      const img = document.createElement('img');
-      img.src = 'images/' + photo.file;
-      img.alt = photo.caption || '';
-      img.loading = 'lazy';
-      img.style.cssText = `width:${imgSz}px;height:${imgSz}px;`;
-
-      /* メタ */
-      const meta = document.createElement('div');
-      meta.className = 'photo-meta';
-      meta.textContent = fmt(photo.date) + (photo.caption ? '　' + photo.caption : '');
-
-      card.appendChild(tail);   // 尾は img より先（背面）
-      card.appendChild(img);    // 画像が尾の上に重なる
-      card.appendChild(meta);
-
-      card.addEventListener('click', () =>
-        openLb('images/'+photo.file, photo.caption||'', photo.date, photo.caption));
-
-      stage.appendChild(card);
-    });
+    photosData = photos || [];
+    renderAllPhotos(photosData);
   })
   .catch(() => {
     const m = document.createElement('div');
@@ -295,6 +470,287 @@ fetch('photos.json')
     m.textContent = 'photos.json の読み込みに失敗しました';
     document.body.appendChild(m);
   });
+
+/* ===== メニュー ===== */
+const menuBtn   = document.getElementById('menu-btn');
+const menuPanel = document.getElementById('menu-panel');
+
+menuBtn.addEventListener('click', e => {
+  e.stopPropagation();
+  menuPanel.classList.toggle('open');
+});
+document.addEventListener('click', e => {
+  if (!menuPanel.contains(e.target) && e.target !== menuBtn) {
+    menuPanel.classList.remove('open');
+  }
+});
+
+function openModal(modal) { modal.classList.add('open'); }
+function closeModal(modal) { modal.classList.remove('open'); }
+
+/* ===== 思い出一覧 ===== */
+const listModal = document.getElementById('list-modal');
+const listGrid  = document.getElementById('list-grid');
+
+function renderListGrid() {
+  listGrid.innerHTML = '';
+  if (!photosData.length) {
+    listGrid.innerHTML = '<div class="list-empty">まだ写真がありません</div>';
+    return;
+  }
+  const sorted = [...photosData].sort((a,b) => String(b.date).localeCompare(String(a.date)));
+  sorted.forEach(photo => {
+    const item = document.createElement('div');
+    item.className = 'list-item';
+    const img = document.createElement('img');
+    img.src = 'images/' + photo.file;
+    img.loading = 'lazy';
+    img.alt = photo.caption || '';
+    const meta = document.createElement('div');
+    meta.className = 'list-item-meta';
+    meta.textContent = fmt(photo.date) + (photo.caption ? '　' + photo.caption : '');
+    item.appendChild(img);
+    item.appendChild(meta);
+    item.addEventListener('click', () => openLb('images/'+photo.file, photo.caption||'', photo.date, photo.caption));
+    listGrid.appendChild(item);
+  });
+}
+
+document.getElementById('menu-list-btn').addEventListener('click', () => {
+  menuPanel.classList.remove('open');
+  renderListGrid();
+  openModal(listModal);
+});
+document.getElementById('list-close-btn').addEventListener('click', () => closeModal(listModal));
+listModal.addEventListener('click', e => { if (e.target === listModal) closeModal(listModal); });
+
+/* ===== GitHub アップロード ===== */
+const GH_OWNER  = 'masato-masa';
+const GH_REPO   = '7242';
+const GH_BRANCH = 'main';
+const TOKEN_KEY = 'gh_pat_7242';
+
+const getToken   = () => localStorage.getItem(TOKEN_KEY);
+const setToken   = t  => localStorage.setItem(TOKEN_KEY, t);
+const clearToken = ()  => localStorage.removeItem(TOKEN_KEY);
+
+async function ghRequest(path, { method = 'GET', body } = {}) {
+  const token = getToken();
+  const res = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/${path}`, {
+    method,
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Accept': 'application/vnd.github+json',
+      'Content-Type': 'application/json'
+    },
+    body: body ? JSON.stringify(body) : undefined
+  });
+  if (!res.ok) {
+    let msg = res.statusText;
+    try { const j = await res.json(); msg = j.message || msg; } catch {}
+    const err = new Error(`GitHub API エラー (${res.status}): ${msg}`);
+    err.status = res.status;
+    throw err;
+  }
+  return res.json();
+}
+const ghGet   = path => ghRequest(path);
+const ghPost  = (path, body) => ghRequest(path, { method: 'POST', body });
+const ghPatch = (path, body) => ghRequest(path, { method: 'PATCH', body });
+
+function b64EncodeUnicode(str) {
+  return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, (_, p1) => String.fromCharCode('0x'+p1)));
+}
+function b64DecodeUnicode(str) {
+  return decodeURIComponent(atob(str).split('').map(c => '%' + ('00'+c.charCodeAt(0).toString(16)).slice(-2)).join(''));
+}
+function fileToBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload  = () => resolve(reader.result.split(',')[1]);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+function safeExt(filename) {
+  const m = /\.([a-zA-Z0-9]+)$/.exec(filename || '');
+  const ext = m ? m[1].toLowerCase() : '';
+  const allowed = ['jpg','jpeg','png','gif','webp','bmp','heic','heif'];
+  return allowed.includes(ext) ? ext : 'jpg';
+}
+function uniqueFilename(ext) {
+  return `${Date.now().toString(36)}${Math.random().toString(36).slice(2,6)}.${ext}`;
+}
+function todayISO() {
+  const d = new Date();
+  const tz = d.getTimezoneOffset() * 60000;
+  return new Date(d - tz).toISOString().slice(0,10);
+}
+
+/* 複数画像 + photos.json 更新を1コミットにまとめる */
+async function commitPhotos(items, onProgress) {
+  onProgress('最新のコミットを取得中...');
+  const ref = await ghGet(`git/ref/heads/${GH_BRANCH}`);
+  const latestCommitSha = ref.object.sha;
+  const latestCommit = await ghGet(`git/commits/${latestCommitSha}`);
+  const baseTreeSha = latestCommit.tree.sha;
+
+  const treeEntries = [];
+  for (let i = 0; i < items.length; i++) {
+    onProgress(`画像をアップロード中 (${i+1}/${items.length})...`);
+    const blob = await ghPost('git/blobs', { content: items[i].base64, encoding: 'base64' });
+    treeEntries.push({ path: `images/${items[i].filename}`, mode: '100644', type: 'blob', sha: blob.sha });
+  }
+
+  onProgress('photos.json を更新中...');
+  const current = await ghGet(`contents/photos.json?ref=${GH_BRANCH}`);
+  const decoded = JSON.parse(b64DecodeUnicode(current.content.replace(/\n/g,'')));
+  const newEntries = items.map(it => ({ file: it.filename, date: it.dateStr, caption: it.caption }));
+  const updated = decoded.concat(newEntries);
+  treeEntries.push({ path: 'photos.json', mode: '100644', type: 'blob', content: JSON.stringify(updated, null, 2) });
+
+  onProgress('コミットを作成中...');
+  const newTree = await ghPost('git/trees', { base_tree: baseTreeSha, tree: treeEntries });
+  const newCommit = await ghPost('git/commits', {
+    message: `思い出を追加 (${items.length}件)`,
+    tree: newTree.sha,
+    parents: [latestCommitSha]
+  });
+
+  onProgress('公開中...');
+  await ghPatch(`git/refs/heads/${GH_BRANCH}`, { sha: newCommit.sha });
+
+  return { updated };
+}
+
+const uploadModal        = document.getElementById('upload-modal');
+const uploadTokenSection = document.getElementById('upload-token-section');
+const uploadFormSection  = document.getElementById('upload-form-section');
+const uploadTokenInput   = document.getElementById('upload-token-input');
+const uploadFileInput    = document.getElementById('upload-file-input');
+const uploadItemsEl      = document.getElementById('upload-items');
+const uploadSubmitBtn    = document.getElementById('upload-submit-btn');
+const uploadStatusEl     = document.getElementById('upload-status');
+
+function showTokenSection() {
+  uploadTokenSection.style.display = 'block';
+  uploadFormSection.style.display  = 'none';
+  uploadStatusEl.textContent = '';
+}
+function showFormSection() {
+  uploadTokenSection.style.display = 'none';
+  uploadFormSection.style.display  = 'block';
+}
+
+document.getElementById('menu-upload-btn').addEventListener('click', () => {
+  menuPanel.classList.remove('open');
+  uploadStatusEl.textContent = '';
+  if (getToken()) showFormSection(); else showTokenSection();
+  openModal(uploadModal);
+});
+document.getElementById('upload-close-btn').addEventListener('click', () => closeModal(uploadModal));
+uploadModal.addEventListener('click', e => { if (e.target === uploadModal) closeModal(uploadModal); });
+
+document.getElementById('upload-token-save-btn').addEventListener('click', async () => {
+  const token = uploadTokenInput.value.trim();
+  if (!token) return;
+  setToken(token);
+  uploadTokenSection.querySelector('.token-hint').textContent = '確認中...';
+  try {
+    const repo = await ghGet('');
+    if (repo.permissions && repo.permissions.push === false) {
+      throw new Error('このトークンには書き込み権限がありません');
+    }
+    uploadTokenInput.value = '';
+    showFormSection();
+  } catch (err) {
+    clearToken();
+    alert('トークンを確認できませんでした: ' + err.message);
+    showTokenSection();
+  }
+});
+
+document.getElementById('upload-clear-token-btn').addEventListener('click', () => {
+  clearToken();
+  showTokenSection();
+});
+
+uploadFileInput.addEventListener('change', () => {
+  uploadItemsEl.innerHTML = '';
+  const files = [...uploadFileInput.files];
+  files.forEach(file => {
+    const row = document.createElement('div');
+    row.className = 'upload-item';
+    row._file = file;
+
+    const thumb = document.createElement('img');
+    thumb.className = 'upload-thumb';
+    thumb.src = URL.createObjectURL(file);
+
+    const fields = document.createElement('div');
+    fields.className = 'upload-fields';
+
+    const dateInput = document.createElement('input');
+    dateInput.type = 'date';
+    dateInput.className = 'upload-date';
+    dateInput.value = todayISO();
+
+    const titleInput = document.createElement('input');
+    titleInput.type = 'text';
+    titleInput.className = 'upload-title';
+    titleInput.value = '思い出';
+    titleInput.placeholder = 'タイトル';
+
+    fields.appendChild(dateInput);
+    fields.appendChild(titleInput);
+
+    const removeBtn = document.createElement('button');
+    removeBtn.type = 'button';
+    removeBtn.className = 'upload-remove';
+    removeBtn.textContent = '✕';
+    removeBtn.addEventListener('click', () => row.remove());
+
+    row.appendChild(thumb);
+    row.appendChild(fields);
+    row.appendChild(removeBtn);
+    uploadItemsEl.appendChild(row);
+  });
+});
+
+uploadSubmitBtn.addEventListener('click', async () => {
+  const rows = [...uploadItemsEl.querySelectorAll('.upload-item')];
+  if (!rows.length) { uploadStatusEl.textContent = '画像を選択してください'; return; }
+
+  uploadSubmitBtn.disabled = true;
+  uploadStatusEl.textContent = '準備中...';
+  try {
+    const items = [];
+    for (const row of rows) {
+      const file = row._file;
+      const dateVal = row.querySelector('.upload-date').value;
+      const dateStr = dateVal ? dateVal.replace(/-/g, '') : todayISO().replace(/-/g,'');
+      const caption = row.querySelector('.upload-title').value.trim() || '思い出';
+      const base64  = await fileToBase64(file);
+      const filename = uniqueFilename(safeExt(file.name));
+      items.push({ filename, dateStr, caption, base64 });
+    }
+
+    const { updated } = await commitPhotos(items, msg => { uploadStatusEl.textContent = msg; });
+    photosData = updated;
+    renderAllPhotos(photosData);
+    uploadStatusEl.textContent = `✓ ${items.length}件アップロードしました`;
+    uploadItemsEl.innerHTML = '';
+    uploadFileInput.value = '';
+  } catch (err) {
+    uploadStatusEl.textContent = 'エラー: ' + err.message;
+    if (err.status === 401) {
+      clearToken();
+      setTimeout(showTokenSection, 1200);
+    }
+  } finally {
+    uploadSubmitBtn.disabled = false;
+  }
+});
 </script>
 </body>
 </html>
